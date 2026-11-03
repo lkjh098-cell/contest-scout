@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+/dist/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# 데이터 (로컬 전용)
+data/*.sqlite3
+data/*.sqlite3-*
+data/*.md
+
+# 프론트엔드
+web/node_modules/
+web/dist/
+web/.vite/
+web/tsconfig.tsbuildinfo
+
+# 대시보드가 만드는 설정 (기본값은 코드에 있다)
+config/settings.json
+
+# 테스트/도구
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
+
+# Local preferences and credentials
+config/profile.json
+*.pem
+*.key
+*.p12
+*.pfx
