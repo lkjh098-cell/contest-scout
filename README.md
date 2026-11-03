@@ -15,21 +15,21 @@ v0.3.0부터는 터미널 없이 **웹 대시보드**에서 전부 처리한다.
 
 ```bash
 cd contest-scout
-./start.sh
+bash ./start.sh
 ```
 
 처음 실행하면 Python 가상환경을 만들고, 브라우저에서 <http://localhost:3000> 을 연다.
 
 GitHub 소스판은 **Python 3.11+와 Node 20+**가 필요하다. 빌드 산출물은 포함하지
-않으며, `./start.sh`를 처음 실행하면 화면 패키지 설치와 빌드를 진행한다.
+않으며, `bash ./start.sh`를 처음 실행하면 화면 패키지 설치와 빌드를 진행한다.
 
 공개 소스에는 개인 설정, 수집 DB와 리포트, 인증키를 포함하지 않는다.
 처음 실행하면 빈 상태로 시작하며, 오른쪽 위 **Scout 실행**으로 공모전을 수집할 수 있다.
 수집 시간과 결과는 대상 사이트의 응답 및 접근 정책에 따라 달라진다.
 
 ```bash
-./start.sh dev      # 코드 수정용 — Vite(3000) + FastAPI(8000), 저장 시 즉시 반영
-./start.sh build    # 프론트엔드만 다시 빌드
+bash ./start.sh dev      # 코드 수정용 — Vite(3000) + FastAPI(8000), 저장 시 즉시 반영
+bash ./start.sh build    # 프론트엔드만 다시 빌드
 make test           # 테스트
 ```
 
@@ -97,8 +97,8 @@ API를 통째로 걷어내도 CLI는 그대로 돌아간다.
 
 | | 프론트엔드 | 백엔드 | 주소 |
 | --- | --- | --- | --- |
-| `./start.sh` | 빌드된 정적 파일을 FastAPI가 서빙 | 같은 프로세스 | 3000 |
-| `./start.sh dev` | Vite 개발 서버 (HMR) | 별도 프로세스 | 3000 → 8000 프록시 |
+| `bash ./start.sh` | 빌드된 정적 파일을 FastAPI가 서빙 | 같은 프로세스 | 3000 |
+| `bash ./start.sh dev` | Vite 개발 서버 (HMR) | 별도 프로세스 | 3000 → 8000 프록시 |
 
 ---
 
@@ -408,7 +408,7 @@ sqlite3 data/contest_scout.sqlite3 \
 경로를 바꾸려면 환경변수를 쓴다.
 
 ```bash
-CONTEST_SCOUT_DB=data/dev.sqlite3 ./start.sh
+CONTEST_SCOUT_DB=data/dev.sqlite3 bash ./start.sh
 ```
 
 ---
