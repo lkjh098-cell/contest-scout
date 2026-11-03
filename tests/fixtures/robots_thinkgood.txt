@@ -1,0 +1,58 @@
+# 구글봇 및 주요 검색엔진 허용
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+User-agent: DaumBot
+Allow: /
+
+# 일반 크롤러 기본 설정
+User-agent: *
+Allow: /
+
+# JSESSIONID 포함 URL 차단 (중복 콘텐츠 방지)
+Disallow: /*;jsessionid=*
+
+# 로그인/인증 관련 페이지 차단
+Disallow: /*/auth/
+Disallow: /login*
+Disallow: /logout*
+
+# 이북 및 파일 관련 완전 차단
+Disallow: /ebook/
+Disallow: /include/download.php
+Disallow: /upload/files/
+Disallow: /ufiles/
+
+# 파일 확장자별 차단
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.hwp$
+Disallow: /*.zip$
+Disallow: /*.rar$
+
+# 저품질 페이지 차단
+# Disallow: /*thinkgood-talk.do*
+Disallow: /thinkgood/user/contest/thinkgood-talk*
+
+# 임시/테스트 페이지 차단
+Disallow: /test/
+Disallow: /temp/
+Disallow: /dev/
+
+# SEO 도구 차단
+User-agent: SemrushBot
+Disallow : /
+User-agent: AhrefsBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+
+# 사이트맵 위치
+Sitemap: https://thinkcontest.com/sitemap.xml
