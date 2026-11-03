@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/* 다크 모드는 클래스로 제어한다. OS 설정은 최초 1회만 참고하고, 그 뒤로는
+   사용자가 고른 값을 localStorage에서 읽는다. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+
+  --bg: #f7f7f5;
+  --bg-rail: #f2f2ef;
+  --surface: #ffffff;
+  --surface-2: #fafaf8;
+  --surface-3: #f2f2ef;
+
+  --line: #e6e5e0;
+  --line-strong: #d6d5cf;
+
+  --text: #17171a;
+  --text-muted: #6a6a70;
+  --text-subtle: #97979d;
+
+  --accent: #2044c9;
+  --accent-hover: #1a37a6;
+  /* 채워진 버튼 전용. 다크 모드에서 --accent를 그대로 쓰면 연보라처럼 보인다. */
+  --accent-solid: #2044c9;
+  --accent-solid-hover: #1a37a6;
+  --accent-solid-fg: #ffffff;
+  --accent-soft: #eef1fd;
+  --accent-line: #c9d3f7;
+
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --warn: #a4560a;
+  --warn-soft: #fdf2e3;
+  --success: #0a6c46;
+  --success-soft: #e8f5ef;
+
+  --tier-s-bg: #17171a;
+  --tier-s-fg: #f5c451;
+  --tier-a-bg: #eef1fd;
+  --tier-a-fg: #2a41a8;
+  --tier-a-line: #cdd6f6;
+  --tier-b-bg: #f2f2ef;
+  --tier-b-fg: #5b5b61;
+  --tier-b-line: #e2e2dc;
+
+  --grid: #eceae4;
+  --shadow-sm: 0 1px 2px rgb(20 20 26 / 0.05);
+  --shadow-md: 0 4px 16px -4px rgb(20 20 26 / 0.1), 0 1px 3px rgb(20 20 26 / 0.05);
+  --shadow-lg: 0 20px 48px -16px rgb(20 20 26 / 0.22);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #0c0c0e;
+  --bg-rail: #101013;
+  --surface: #16161a;
+  --surface-2: #1b1b20;
+  --surface-3: #212127;
+
+  --line: #26262c;
+  --line-strong: #34343c;
+
+  --text: #ececef;
+  --text-muted: #9d9da6;
+  --text-subtle: #6f6f79;
+
+  --accent: #8ea6ff;
+  --accent-hover: #a7b9ff;
+  --accent-solid: #3a5fdd;
+  --accent-solid-hover: #4a6ee8;
+  --accent-solid-fg: #ffffff;
+  --accent-soft: #1a1f3a;
+  --accent-line: #2b3358;
+
+  --danger: #ff8a7a;
+  --danger-soft: #2c1512;
+  --warn: #e0a35c;
+  --warn-soft: #2a1e0d;
+  --success: #5cd0a0;
+  --success-soft: #0f2620;
+
+  --tier-s-bg: #f5c451;
+  --tier-s-fg: #17171a;
+  --tier-a-bg: #1a1f3a;
+  --tier-a-fg: #a9baff;
+  --tier-a-line: #2c3560;
+  --tier-b-bg: #212127;
+  --tier-b-fg: #a3a3ac;
+  --tier-b-line: #2e2e36;
+
+  --grid: #24242a;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 16px -4px rgb(0 0 0 / 0.55);
+  --shadow-lg: 0 24px 56px -16px rgb(0 0 0 / 0.7);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-rail: var(--bg-rail);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--text-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-solid-hover: var(--accent-solid-hover);
+  --color-accent-solid-fg: var(--accent-solid-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-grid: var(--grid);
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --shadow-card: var(--shadow-sm);
+  --shadow-pop: var(--shadow-md);
+  --shadow-float: var(--shadow-lg);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+}
+
+/* 브라우저 기본 스크롤바를 그대로 두지 않는다. */
+@media (pointer: fine) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--text-subtle);
+    background-clip: content-box;
+  }
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@utility num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@utility label-xs {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-subtle);
+}
+
+@utility hairline {
+  border-width: 1px;
+  border-color: var(--line);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-3);
+  border-radius: 6px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--surface) 70%, transparent),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+.fade-up {
+  animation: fade-up 0.24s ease-out both;
+}
+
+.dot-live {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+/* Recharts 기본 스타일 정리 */
+.recharts-cartesian-axis-tick text {
+  fill: var(--text-subtle);
+  font-size: 11px;
+}
+.recharts-cartesian-grid line {
+  stroke: var(--grid);
+}
+.recharts-surface:focus {
+  outline: none;
+}
